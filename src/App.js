@@ -9,6 +9,7 @@ import Products from "./pages/Products";
 import SingleProduct from "./pages/SingleProduct";
 import Cart from "./pages/Cart";
 import Error from "./pages/Error";
+import Checkout from "./pages/Checkout";
 
 function App() {
   return (
@@ -28,6 +29,9 @@ function App() {
         <Route path="/products/:id" children={<SingleProduct />} />
         <Route path="/cart">
           <Cart />
+        </Route>
+        <Route path="/checkout">
+          <Checkout />
         </Route>
         <Route path="*">
           <Error />

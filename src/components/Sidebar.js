@@ -5,15 +5,17 @@ import { MdClose } from "react-icons/md";
 import logo from "../assets/logo-black.svg";
 import { links } from "../utils/constants";
 import NavIcons from "./NavIcons";
+import { useProductsContext } from "../context/products_context";
 
 const Sidebar = () => {
-  const open = true;
+  const { sidebarOpen, closeSidebar } = useProductsContext();
+
   return (
     <SidebarContainer>
-      <aside className={`${open ? "sidebar show-sidebar" : "show-sidebar"}`}>
+      <aside className={`${sidebarOpen ? "sidebar show-sidebar" : "sidebar"}`}>
         <div className="sidebar-header">
           <img src={logo} alt="logo" className="logo" />
-          <button className="close-btn" type="button">
+          <button className="close-btn" type="button" onClick={closeSidebar}>
             <MdClose />
           </button>
         </div>
@@ -23,7 +25,9 @@ const Sidebar = () => {
 
             return (
               <li key={id}>
-                <Link to={url}>{text}</Link>
+                <Link to={url} onClick={closeSidebar}>
+                  {text}
+                </Link>
               </li>
             );
           })}

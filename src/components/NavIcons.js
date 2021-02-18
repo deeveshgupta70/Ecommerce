@@ -3,11 +3,14 @@ import { FaShoppingCart, FaUserCircle } from "react-icons/fa";
 import { BiLogInCircle } from "react-icons/bi";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+import { useProductsContext } from "../context/products_context";
 
 const NavIcons = () => {
+  const { closeSidebar } = useProductsContext();
+
   return (
     <NavIconContainer className="nav-icon-container">
-      <Link to="/cart" className="cart-btn">
+      <Link to="/cart" className="cart-btn" onClick={closeSidebar}>
         <span className="cart-container">
           <FaShoppingCart />
           <span className="cart-value">12</span>
