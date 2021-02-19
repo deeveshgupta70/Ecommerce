@@ -27,7 +27,7 @@ const Hero = () => {
 };
 
 const HeroContainer = styled.section`
-  min-height: 60vh;
+  min-height: 100vh;
   display: grid;
   place-items: center;
   .img-container {

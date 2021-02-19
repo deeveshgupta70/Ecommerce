@@ -15,3 +15,8 @@ export const links = [
     url: "/products",
   },
 ];
+
+export const products_url = "https://apimocha.com/furniture-react/products";
+
+export const single_product_url =
+  "https://apimocha.com/furniture-react/product/id=";
