@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import hero from "../assets/hero.jpg";
+import brush from "../assets/brush-stroke-banner-6.svg";
 
 const Hero = () => {
   return (
@@ -19,6 +20,7 @@ const Hero = () => {
           Shop now
         </Link>
       </article>
+      <img src={brush} alt="paint brush" className="small-hero" />
       <article className="img-container">
         <img src={hero} alt="hero background" className="main-img" />
       </article>
@@ -37,8 +39,15 @@ const HeroContainer = styled.section`
     line-height: 2;
     max-width: 45em;
     margin-bottom: 2rem;
-    color: var(--clr-grey-5);
+    color: var(--clr-grey-3);
     font-size: 1rem;
+  }
+  .small-hero {
+    color: var(--clr-primary-9);
+    z-index: -1;
+    position: absolute;
+    height: calc(100vh - 10rem);
+    width: calc(100vw - 1rem);
   }
   @media (min-width: 992px) {
     height: calc(100vh - 5rem);
@@ -75,6 +84,9 @@ const HeroContainer = styled.section`
       bottom: 0%;
       left: -8%;
       border-radius: var(--radius);
+    }
+    .small-hero {
+      display: none;
     }
   }
 `;

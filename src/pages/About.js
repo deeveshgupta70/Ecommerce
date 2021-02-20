@@ -11,7 +11,7 @@ const About = () => {
         <img src={image} alt="light room" />
         <article>
           <div className="title">
-            <h2>Our mission</h2>
+            <h2>Our team</h2>
             <div className="underline"></div>
             <p>
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Ratione

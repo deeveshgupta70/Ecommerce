@@ -1,6 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-import { Link } from "react-router-dom";
 import { useProductsContext } from "../context/products_context";
 import Loading from "./Loading";
 import Error from "./Error";
