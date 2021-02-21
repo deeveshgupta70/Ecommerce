@@ -68,7 +68,7 @@ const SingleProduct = () => {
               {idProduct}
             </p>
             <hr />
-            {stock > 0 && <AddToCart />}
+            {stock > 0 && <AddToCart product={singleProduct} />}
           </section>
         </div>
         <Link to="/products" className="btn">
