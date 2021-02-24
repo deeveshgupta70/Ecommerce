@@ -105,7 +105,8 @@ p {
   color: var(--clr-grey-3);
 }
 button,
-input {
+input,
+select {
   outline: none;
 }
 @media screen and (min-width: 800px) {
