@@ -4,15 +4,22 @@ import {
   SET_LIST_VIEW,
   UPDATE_SORT,
   SORT_PRODUCTS,
+  UPDATE_FILTERS,
+  FILTER_PRODUCTS,
+  CLEAR_FILTERS,
 } from "../actions";
 
 const filter_reducer = (state, action) => {
   switch (action.type) {
     case LOAD_PRODUCTS:
+      let maxPrice = action.payload.map((product) => product.price);
+      maxPrice = Math.max(...maxPrice);
+
       return {
         ...state,
         allProducts: [...action.payload],
         filteredProducts: [...action.payload],
+        filters: { ...state.filters, maxPrice, price: maxPrice },
       };
     case SET_GRID_VIEW:
       return { ...state, gridView: true };
@@ -42,6 +49,23 @@ const filter_reducer = (state, action) => {
       }
 
       return { ...state, filteredProducts: tempProducts };
+    case UPDATE_FILTERS:
+      const { name, value } = action.payload;
+
+      return { ...state, filters: { ...state.filters, [name]: value } };
+    case FILTER_PRODUCTS:
+      return { ...state };
+    case CLEAR_FILTERS:
+      return {
+        ...state,
+        filters: {
+          ...state.filters,
+          searchText: "",
+          designer: "all",
+          price: state.filters.maxPrice,
+          shipping: false,
+        },
+      };
     default:
       throw new Error(`"${action.type}" doesn't match action type`);
   }
