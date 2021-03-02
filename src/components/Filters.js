@@ -60,6 +60,7 @@ const Filters = () => {
               min={minPrice}
               max={maxPrice}
               value={price}
+              step={1000}
             />
           </div>
           <div className="form-control shipping">

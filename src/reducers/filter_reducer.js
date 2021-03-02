@@ -54,7 +54,31 @@ const filter_reducer = (state, action) => {
 
       return { ...state, filters: { ...state.filters, [name]: value } };
     case FILTER_PRODUCTS:
-      return { ...state };
+      const { allProducts } = state;
+      const { searchText, designer, price, shipping } = state.filters;
+      let tempoProducts = [...allProducts];
+
+      if (searchText) {
+        tempoProducts = tempoProducts.filter((product) =>
+          product.name.toLowerCase().includes(searchText)
+        );
+      }
+
+      if (designer !== "all") {
+        tempoProducts = tempoProducts.filter(
+          (product) => product.designer === designer
+        );
+      }
+
+      tempoProducts = tempoProducts.filter((product) => product.price <= price);
+
+      if (shipping) {
+        tempoProducts = tempoProducts.filter(
+          (product) => product.shipping === true
+        );
+      }
+
+      return { ...state, filteredProducts: tempoProducts };
     case CLEAR_FILTERS:
       return {
         ...state,
