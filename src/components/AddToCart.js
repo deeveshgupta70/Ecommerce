@@ -86,7 +86,7 @@ const AddToCartContainer = styled.section`
     margin-right: 0.5rem;
     border: none;
     cursor: pointer;
-    opacity: 0.5;
+    opacity: 0.8;
     display: flex;
     align-items: center;
     justify-content: center;

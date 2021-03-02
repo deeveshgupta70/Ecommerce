@@ -55,7 +55,7 @@ const filter_reducer = (state, action) => {
       return { ...state, filters: { ...state.filters, [name]: value } };
     case FILTER_PRODUCTS:
       const { allProducts } = state;
-      const { searchText, designer, price, shipping } = state.filters;
+      const { searchText, designer, color, price, shipping } = state.filters;
       let tempoProducts = [...allProducts];
 
       if (searchText) {
@@ -68,6 +68,12 @@ const filter_reducer = (state, action) => {
         tempoProducts = tempoProducts.filter(
           (product) => product.designer === designer
         );
+      }
+
+      if (color !== "all") {
+        tempoProducts = tempoProducts.filter((product) => {
+          return product.colors.find((c) => c === color);
+        });
       }
 
       tempoProducts = tempoProducts.filter((product) => product.price <= price);
@@ -86,6 +92,7 @@ const filter_reducer = (state, action) => {
           ...state.filters,
           searchText: "",
           designer: "all",
+          color: "all",
           price: state.filters.maxPrice,
           shipping: false,
         },

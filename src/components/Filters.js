@@ -64,6 +64,22 @@ const Filters = () => {
             <h5>Colors</h5>
             <div className="colors">
               {colors.map((c, index) => {
+                if (c === "all") {
+                  return (
+                    <button
+                      key={index}
+                      name="color"
+                      onClick={updateFilters}
+                      data-color="all"
+                      className={`${
+                        color === "all" ? "all-btn active" : "all-btn"
+                      }`}
+                    >
+                      All
+                    </button>
+                  );
+                }
+
                 return (
                   <button
                     key={index}
@@ -201,7 +217,7 @@ const FiltersContainer = styled.section`
     align-items: center;
     justify-content: center;
     svg {
-      font-size: 0.5rem;
+      font-size: 0.6rem;
       color: var(--clr-white);
     }
   }
