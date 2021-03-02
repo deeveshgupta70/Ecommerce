@@ -20,6 +20,7 @@ const initialState = {
   filters: {
     searchText: "",
     designer: "all",
+    color: "all",
     minPrice: 0,
     maxPrice: 0,
     price: 0,

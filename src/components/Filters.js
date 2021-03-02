@@ -1,12 +1,21 @@
 import React from "react";
 import styled from "styled-components";
+import { FaCheck } from "react-icons/fa";
 import { useFilterContext } from "../context/filter_context";
 import formatPrice from "../utils/formatPrice";
 import getUniqueValues from "../utils/getUniqueValues";
 
 const Filters = () => {
   const {
-    filters: { searchText, designer, minPrice, maxPrice, price, shipping },
+    filters: {
+      searchText,
+      designer,
+      color,
+      minPrice,
+      maxPrice,
+      price,
+      shipping,
+    },
     updateFilters,
     clearFilters,
     allProducts,
@@ -17,6 +26,7 @@ const Filters = () => {
   };
 
   const designers = getUniqueValues(allProducts, "designer");
+  const colors = getUniqueValues(allProducts, "colors");
 
   return (
     <FiltersContainer>
@@ -45,6 +55,27 @@ const Filters = () => {
                     className={`${designer === des ? "active" : null}`}
                   >
                     {des}
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+          <div className="form-control">
+            <h5>Colors</h5>
+            <div className="colors">
+              {colors.map((c, index) => {
+                return (
+                  <button
+                    key={index}
+                    name="color"
+                    style={{ background: c }}
+                    className={`${
+                      color === c ? "color-btn active" : "color-btn"
+                    }`}
+                    data-color={c}
+                    onClick={updateFilters}
+                  >
+                    {color === c ? <FaCheck /> : null}
                   </button>
                 );
               })}
@@ -149,6 +180,29 @@ const FiltersContainer = styled.section`
     .content {
       position: sticky;
       top: 1rem;
+    }
+  }
+  .colors {
+    display: inline-flex;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+  .color-btn {
+    display: inline-block;
+    width: 1rem;
+    height: 1rem;
+    border-radius: 50%;
+    background: #222;
+    margin-right: 0.5rem;
+    border: none;
+    cursor: pointer;
+    opacity: 0.8;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    svg {
+      font-size: 0.5rem;
+      color: var(--clr-white);
     }
   }
 `;
