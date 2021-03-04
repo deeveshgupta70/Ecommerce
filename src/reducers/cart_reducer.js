@@ -3,6 +3,7 @@ import {
   REMOVE_CART_ITEM,
   TOGGLE_CART_ITEM_AMOUNT,
   CLEAR_CART,
+  COUNT_CART_TOTALS,
 } from "../actions";
 
 const cart_reducer = (state, action) => {
@@ -63,12 +64,30 @@ const cart_reducer = (state, action) => {
               newAmount = 1;
             }
             return { ...item, amount: newAmount };
+          } else {
+            return { ...item };
           }
         } else {
           return item;
         }
       });
       return { ...state, cart: temporaryCart };
+    case COUNT_CART_TOTALS:
+      const { totalItems, totalAmount } = state.cart.reduce(
+        (total, cartItem) => {
+          const { amount, price } = cartItem;
+
+          total.totalItems += amount;
+          total.totalAmount += price * amount;
+
+          return total;
+        },
+        {
+          totalItems: 0,
+          totalAmount: 0,
+        }
+      );
+      return { ...state, totalItems, totalAmount };
     default:
       throw new Error(`"${action.type}" doesn't match action type`);
   }

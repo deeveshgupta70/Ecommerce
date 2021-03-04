@@ -4,16 +4,18 @@ import { BiLogInCircle } from "react-icons/bi";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { useProductsContext } from "../context/products_context";
+import { useCartContext } from "../context/cart_context";
 
 const NavIcons = () => {
   const { closeSidebar } = useProductsContext();
+  const { totalItems } = useCartContext();
 
   return (
     <NavIconContainer className="nav-icon-container">
       <Link to="/cart" className="cart-btn" onClick={closeSidebar}>
         <span className="cart-container">
           <FaShoppingCart />
-          <span className="cart-value">12</span>
+          <span className="cart-value">{totalItems}</span>
         </span>
       </Link>
       <button type="button" className="auth-btn">
