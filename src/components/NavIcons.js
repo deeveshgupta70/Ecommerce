@@ -1,14 +1,15 @@
 import React from "react";
 import { FaShoppingCart, FaUserCircle } from "react-icons/fa";
-import { BiLogInCircle } from "react-icons/bi";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { useProductsContext } from "../context/products_context";
 import { useCartContext } from "../context/cart_context";
+import { useUserContext } from "../context/user_context";
 
 const NavIcons = () => {
   const { closeSidebar } = useProductsContext();
   const { totalItems } = useCartContext();
+  const { loginWithRedirect, logout, myUser } = useUserContext();
 
   return (
     <NavIconContainer className="nav-icon-container">
@@ -18,9 +19,19 @@ const NavIcons = () => {
           <span className="cart-value">{totalItems}</span>
         </span>
       </Link>
-      <button type="button" className="auth-btn">
-        Login <BiLogInCircle />
-      </button>
+      {myUser ? (
+        <button
+          type="button"
+          className="auth-btn"
+          onClick={() => logout({ returnTo: window.location.origin })}
+        >
+          Logout
+        </button>
+      ) : (
+        <button type="button" className="auth-btn" onClick={loginWithRedirect}>
+          Login <FaUserCircle />
+        </button>
+      )}
     </NavIconContainer>
   );
 };
