@@ -6,9 +6,11 @@ import logo from "../assets/logo-black.svg";
 import { links } from "../utils/constants";
 import NavIcons from "./NavIcons";
 import { useProductsContext } from "../context/products_context";
+import { useAuth0 } from "@auth0/auth0-react";
 
 const Navbar = () => {
   const { openSidebar } = useProductsContext();
+  const { user } = useAuth0();
 
   return (
     <NavContainer>
@@ -31,6 +33,11 @@ const Navbar = () => {
               </li>
             );
           })}
+          {user && (
+            <li>
+              <Link to="/checkout">Checkout</Link>
+            </li>
+          )}
         </ul>
         <NavIcons />
       </div>

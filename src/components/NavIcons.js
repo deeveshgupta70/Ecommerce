@@ -4,12 +4,12 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { useProductsContext } from "../context/products_context";
 import { useCartContext } from "../context/cart_context";
-import { useUserContext } from "../context/user_context";
+import { useAuth0 } from "@auth0/auth0-react";
 
 const NavIcons = () => {
   const { closeSidebar } = useProductsContext();
   const { totalItems } = useCartContext();
-  const { loginWithRedirect, logout, myUser } = useUserContext();
+  const { loginWithRedirect, logout, user } = useAuth0();
 
   return (
     <NavIconContainer className="nav-icon-container">
@@ -19,7 +19,7 @@ const NavIcons = () => {
           <span className="cart-value">{totalItems}</span>
         </span>
       </Link>
-      {myUser ? (
+      {user ? (
         <button
           type="button"
           className="auth-btn"

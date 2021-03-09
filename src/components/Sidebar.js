@@ -6,9 +6,11 @@ import logo from "../assets/logo-black.svg";
 import { links } from "../utils/constants";
 import NavIcons from "./NavIcons";
 import { useProductsContext } from "../context/products_context";
+import { useAuth0 } from "@auth0/auth0-react";
 
 const Sidebar = () => {
   const { sidebarOpen, closeSidebar } = useProductsContext();
+  const { user } = useAuth0();
 
   return (
     <SidebarContainer>
@@ -31,6 +33,13 @@ const Sidebar = () => {
               </li>
             );
           })}
+          {user && (
+            <li>
+              <Link to="/checkout" onClick={closeSidebar}>
+                Checkout
+              </Link>
+            </li>
+          )}
         </ul>
         <NavIcons />
       </aside>
