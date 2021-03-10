@@ -10,6 +10,7 @@ import SingleProduct from "./pages/SingleProduct";
 import Cart from "./pages/Cart";
 import Error from "./pages/Error";
 import Checkout from "./pages/Checkout";
+import PrivateRoute from "./pages/PrivateRoute";
 
 function App() {
   return (
@@ -30,9 +31,7 @@ function App() {
         <Route path="/cart">
           <Cart />
         </Route>
-        <Route path="/checkout">
-          <Checkout />
-        </Route>
+        <PrivateRoute path="/checkout" component={Checkout} />
         <Route path="*">
           <Error />
         </Route>
