@@ -72,7 +72,7 @@ const AddToCartContainer = styled.section`
   margin-top: 2rem;
   .colors {
     display: grid;
-    grid-template-columns: 125px 1fr;
+    grid-template-columns: 4rem 1fr;
     align-items: center;
     margin-bottom: 1rem;
     span {

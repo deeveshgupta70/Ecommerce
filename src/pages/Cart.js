@@ -34,9 +34,11 @@ const Cart = () => {
 };
 
 const CartContainer = styled.main`
+  display: flex;
+  align-items: center;
+  justify-content: center;
   .empty {
     text-align: center;
-    padding-top: 4rem;
     h2 {
       margin-bottom: 4rem;
       text-transform: none;
