@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
+import axios from "axios";
 
 const Contact = () => {
   const [status, setStatus] = useState("");
@@ -7,21 +8,22 @@ const Contact = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     const form = e.target;
-    const data = new FormData(form);
-    const xhr = new XMLHttpRequest();
 
-    xhr.open(form.method, form.action);
-    xhr.setRequestHeader("Accept", "application/json");
-    xhr.onreadystatechange = () => {
-      if (xhr.readyState !== XMLHttpRequest.DONE) return;
-      if (xhr.status === 200) {
-        form.reset();
-        setStatus("SUCCESS");
-      } else {
+    axios({
+      method: "POST",
+      url: "https://formspree.io/f/xknpaqgw",
+      data: new FormData(form),
+    })
+      .then((response) => {
+        if (response.status === 200) {
+          form.reset();
+          setStatus("SUCCESS");
+        }
+      })
+      .catch((error) => {
+        console.log(error);
         setStatus("ERROR");
-      }
-    };
-    xhr.send(data);
+      });
   };
 
   return (
@@ -34,12 +36,7 @@ const Contact = () => {
             nam laboriosam quod tempore nulla, veniam 20% off! Doloribus soluta
             debitis at atque delectus autem?
           </p>
-          <form
-            className="contact-form"
-            action="https://formspree.io/f/xknpaqgw"
-            method="POST"
-            onSubmit={handleSubmit}
-          >
+          <form className="contact-form" onSubmit={handleSubmit}>
             <input
               type="email"
               className="form-input"
@@ -50,10 +47,12 @@ const Contact = () => {
               Subscribe
             </button>
             {status === "SUCCESS" && (
-              <p className="message">Thank you for subscribing!</p>
+              <span className="message">Thank you for subscribing!</span>
             )}
             {status === "ERROR" && (
-              <p className="message">Something went wrong! Try again later.</p>
+              <span className="message">
+                Something went wrong! Try again later.
+              </span>
             )}
           </form>
         </div>

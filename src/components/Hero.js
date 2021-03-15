@@ -20,7 +20,9 @@ const Hero = () => {
           Shop now
         </Link>
       </article>
-      <img src={brush} alt="paint brush" className="small-hero" />
+      <article className="small-hero">
+        <img src={brush} alt="paint brush" className="svg" />
+      </article>
       <article className="img-container">
         <img src={hero} alt="hero background" className="main-img" />
       </article>
@@ -32,6 +34,7 @@ const HeroContainer = styled.section`
   min-height: 100vh;
   display: grid;
   place-items: center;
+  position: relative;
   .img-container {
     display: none;
   }
@@ -46,8 +49,11 @@ const HeroContainer = styled.section`
     color: var(--clr-primary-9);
     z-index: -1;
     position: absolute;
-    height: calc(100vh - 10rem);
-    width: calc(100vw - 1rem);
+    overflow: hidden;
+  }
+  .svg {
+    max-width: calc(100vw - 0.1rem);
+    min-height: 500px;
   }
   @media (min-width: 992px) {
     height: calc(100vh - 5rem);
