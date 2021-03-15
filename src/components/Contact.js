@@ -24,6 +24,10 @@ const Contact = () => {
         console.log(error);
         setStatus("ERROR");
       });
+
+    setTimeout(() => {
+      setStatus("");
+    }, 5000);
   };
 
   return (
