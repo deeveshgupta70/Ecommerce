@@ -16,9 +16,9 @@ const Navbar = () => {
     <NavContainer>
       <div className="nav-center">
         <div className="nav-header">
-          <Link to="/">
+          {/* <Link to="/">
             <img src={logo} alt="logo" />
-          </Link>
+          </Link> */}
           <button type="button" className="nav-toggle" onClick={openSidebar}>
             <FaBars />
           </button>
